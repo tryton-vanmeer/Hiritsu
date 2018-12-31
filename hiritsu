@@ -1,0 +1,35 @@
+#!/usr/bin/env python3
+
+"""Usage: hiritsu [-hv] FILE
+
+-h --help       show this
+-v --verbose    show more info
+"""
+
+from fractions import Fraction
+from PIL import Image
+from docopt import docopt
+
+def get_image_info(file):
+    """Returns a tuple of width, height and aspect ratio"""
+
+    # Get the width and height of the image
+    image = Image.open(file)
+    width, height = image.size
+
+    # Calculate aspect ratio
+    ratio = Fraction(width / height).limit_denominator()
+
+    return (width, height, ratio)
+
+if __name__ == "__main__":
+    arguments = docopt(__doc__)
+
+    width, height, ratio = get_image_info(arguments["FILE"])
+
+    if (arguments["--verbose"]):
+        print(f"Width: {width}")
+        print(f"Height: {height}")
+        print(f"Ratio: {ratio}")
+    else:
+        print(ratio)
