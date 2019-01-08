@@ -11,6 +11,20 @@ from PIL import Image
 from docopt import docopt
 
 
+def get_aspect_ratio(width, height):
+    """Calculate aspect ratio from width/height"""
+    fraction = Fraction(width / height).limit_denominator()
+
+    numerator = fraction.numerator
+    denominator = fraction.denominator
+
+    # Approximate if needed
+    if (numerator == 64 and denominator == 27):
+        numerator, denominator = 21, 9
+
+    return f"{numerator}:{denominator}"
+
+
 def get_image_info(file):
     """Returns a tuple of width, height and aspect ratio"""
 
@@ -18,20 +32,17 @@ def get_image_info(file):
     image = Image.open(file)
     width, height = image.size
 
-    # Calculate aspect ratio
-    ratio = Fraction(width / height).limit_denominator()
-
-    return (width, height, ratio)
+    return (width, height, get_aspect_ratio(width, height))
 
 
 if __name__ == "__main__":
     arguments = docopt(__doc__)
 
-    width, height, ratio = get_image_info(arguments["FILE"])
+    width, height, aspect_ratio = get_image_info(arguments["FILE"])
 
     if (arguments["--verbose"]):
         print(f"Width: {width}")
         print(f"Height: {height}")
-        print(f"Ratio: {ratio}")
+        print(f"Ratio: {aspect_ratio}")
     else:
-        print(ratio)
+        print(aspect_ratio)
