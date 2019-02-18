@@ -18,9 +18,11 @@ def get_aspect_ratio(width, height):
     numerator = fraction.numerator
     denominator = fraction.denominator
 
-    # Approximate if needed
+    # Approximate/Change ratio for common standards.
     if (numerator == 64 and denominator == 27):
         numerator, denominator = 21, 9
+    elif (numerator == 8 and denominator == 5):
+        numerator, denominator = 16, 10
 
     return f"{numerator}:{denominator}"
 
