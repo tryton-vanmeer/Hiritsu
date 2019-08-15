@@ -23,6 +23,8 @@ def get_aspect_ratio(width, height):
     # Approximate/Change ratio for common standards.
     if (numerator == 64 and denominator == 27):
         numerator, denominator = 21, 9
+    elif (numerator == 43 and denominator == 18):
+        numerator, denominator = 21, 9
     elif (numerator == 8 and denominator == 5):
         numerator, denominator = 16, 10
 
