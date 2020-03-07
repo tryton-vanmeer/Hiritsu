@@ -1,0 +1,11 @@
+[package]
+name = "hiritsu"
+version = "0.1.0"
+authors = ["Tryton Van Meer <trytonvanmeer@protonmail.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+image = "~0.23.0"
+clap = {version = "~2.33.0", features = ["yaml"]}
