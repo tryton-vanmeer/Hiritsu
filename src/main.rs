@@ -46,7 +46,7 @@ fn calculate_aspect_ratio(width: u32, height: u32) -> String {
 fn main() {
     // Set up clap
     let matches = App::new("hiritsu")
-        .version("0.1.0")
+        .version("1.0.0")
         .author("Tryton Van Meer <trytonvanmeer@protonmail.com>")
         .about("Gets the aspect ratio and resolution of images.")
         .args_from_usage(
