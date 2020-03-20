@@ -48,8 +48,8 @@ fn main() {
         .author("Tryton Van Meer <trytonvanmeer@protonmail.com>")
         .about("Gets the aspect ratio and resolution of images.")
         .args_from_usage(
-            "<FILE>      'Sets the image to use'
-            -r, --rename 'Rename the image'"
+            "-r, --rename 'Rename the image'
+            <FILE>      'Sets the image to use'"
         )
         .get_matches();
 
@@ -60,9 +60,13 @@ fn main() {
         return;
     }
 
-    let (width, height) = image::image_dimensions(filename).unwrap();
+    if matches.occurrences_of("rename") == 1 {
+        println!("Renaming File");
+    } else {
+        let (width, height) = image::image_dimensions(filename).unwrap();
 
-    println!("Width: {}", width);
-    println!("Height: {}", height);
-    println!("Ratio: {}", calculate_aspect_ratio(width, height));
+        println!("Width:  {}", width);
+        println!("Height: {}", height);
+        println!("Ratio:  {}", calculate_aspect_ratio(width, height));
+    }
 }
