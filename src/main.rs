@@ -2,7 +2,7 @@ extern crate clap;
 extern crate fraction;
 extern crate image;
 
-use clap::{App, Arg, SubCommand};
+use clap::App;
 use std::path::Path;
 
 type F = fraction::Fraction;
