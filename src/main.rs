@@ -60,13 +60,14 @@ fn main() {
         return;
     }
 
-    if matches.occurrences_of("rename") == 1 {
-        println!("Renaming File");
-    } else {
-        let (width, height) = image::image_dimensions(filename).unwrap();
+    let (width, height) = image::image_dimensions(filename).unwrap();
+    let ratio = calculate_aspect_ratio(width, height);
 
+    if matches.occurrences_of("rename") == 1 {
+        println!("{:#?}", filename.file_name());
+    } else {
         println!("Width:  {}", width);
         println!("Height: {}", height);
-        println!("Ratio:  {}", calculate_aspect_ratio(width, height));
+        println!("Ratio:  {}", ratio);
     }
 }
