@@ -1,39 +1,27 @@
 # Hiritsu (比率 Ratio)
 
-Python tool for getting aspect ratio of files.
-
-
 ```bash
 $ hiritsu --help
-Usage: hiritsu [-hvr] FILE
+hiritsu 1.0.0
+Tryton Van Meer <trytonvanmeer@protonmail.com>
+Gets the aspect ratio and resolution of images.
 
--h --help       show this
--v --verbose    show more info
--r --rename     rename file to include resolution and aspect ratio
+USAGE:
+    hiritsu [FLAGS] <FILE>
 
-$ hiritsu file.png
-16/9
+FLAGS:
+    -h, --help       Prints help information
+    -r, --rename     Rename the image
+    -V, --version    Prints version information
 
-$ hiritsu -v file.png
-Width: 1920
+ARGS:
+    <FILE>    Sets the image to use
+
+$ hiritsu wallpaper.jpg
+Width:  1920
 Height: 1080
-Ratio: 16/9
+Ratio:  16:9
 
-$ hiritsu -r file.png
-$ ls
-file (1920x1080) [16:9].png
+$ hiritsu --rename wallpaper
+wallpaper (1920x1080) [16:9].jpg
 ```
-
-### Dependencies
-
-**Debian/Ubuntu**
-
-`$ apt install python3-docopt, python3-pil`
-
-**Fedora**
-
-`$ dnf install python3-docopt python3-pillow`
-
-**Arch Linux**
-
-`$ pacman -S python-docopt python-pillow`
