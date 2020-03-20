@@ -2,9 +2,10 @@ extern crate clap;
 extern crate fraction;
 extern crate image;
 
-use clap::App;
 use std::path::Path;
 use std::ffi::OsStr;
+use std::fs;
+use clap::App;
 
 type F = fraction::Fraction;
 
@@ -85,6 +86,7 @@ fn main() {
         let new_filepath = format!("{}{} ({}x{}) [{}]{}", path, filename, width, height, ratio, extension);
 
         println!("{}", new_filepath);
+        fs::rename(filepath, new_filepath).expect("Failed to rename file");
     } else {
         println!("Width:  {}", width);
         println!("Height: {}", height);
