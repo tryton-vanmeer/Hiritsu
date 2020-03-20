@@ -4,6 +4,7 @@ extern crate image;
 
 use clap::App;
 use std::path::Path;
+use std::ffi::OsStr;
 
 type F = fraction::Fraction;
 
@@ -54,17 +55,19 @@ fn main() {
         .get_matches();
 
     // Check if file exists
-    let filename = Path::new(matches.value_of("FILE").unwrap());
-    if !filename.exists() {
-        println!("{}: No such file", filename.display());
+    let filepath = Path::new(matches.value_of("FILE").unwrap());
+    if !filepath.exists() {
+        println!("{}: No such file", filepath.display());
         return;
     }
 
-    let (width, height) = image::image_dimensions(filename).unwrap();
+    let (width, height) = image::image_dimensions(filepath).unwrap();
     let ratio = calculate_aspect_ratio(width, height);
 
     if matches.occurrences_of("rename") == 1 {
-        println!("{:#?}", filename.file_name());
+        let extension = filepath.extension().and_then(OsStr::to_str).unwrap();
+
+        println!("{}", extension);
     } else {
         println!("Width:  {}", width);
         println!("Height: {}", height);
