@@ -46,12 +46,10 @@ fn main() {
     let matches = App::new("hiritsu")
         .version("0.1.0")
         .author("Tryton Van Meer <trytonvanmeer@protonmail.com>")
-        .about("Gets the aspect ratio of images.")
-        .arg(
-            Arg::with_name("FILE")
-                .help("The image to get the aspect ratio of.")
-                .required(true)
-                .index(1),
+        .about("Gets the aspect ratio and resolution of images.")
+        .args_from_usage(
+            "<FILE>      'Sets the image to use'
+            -r, --rename 'Rename the image'"
         )
         .get_matches();
 
