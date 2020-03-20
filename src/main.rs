@@ -65,9 +65,26 @@ fn main() {
     let ratio = calculate_aspect_ratio(width, height);
 
     if matches.occurrences_of("rename") == 1 {
-        let extension = filepath.extension().and_then(OsStr::to_str).unwrap();
+        let mut path = String::from(
+            filepath.parent().and_then(Path::to_str).unwrap()
+        );
 
-        println!("{}", extension);
+        if path != "" {
+            path = format!("{}/", path);
+        }
+
+        let mut extension = String::from(".");
+        extension.push_str(
+            filepath.extension().and_then(OsStr::to_str).unwrap()
+        );
+
+        let filename = String::from(
+            filepath.file_name().and_then(OsStr::to_str).unwrap()
+        ).replace(extension.as_str(), "");
+
+        let new_filepath = format!("{}{} ({}x{}) [{}]{}", path, filename, width, height, ratio, extension);
+
+        println!("{}", new_filepath);
     } else {
         println!("Width:  {}", width);
         println!("Height: {}", height);
