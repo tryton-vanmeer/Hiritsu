@@ -22,6 +22,6 @@ Width:  1920
 Height: 1080
 Ratio:  16:9
 
-$ hiritsu --rename wallpaper
+$ hiritsu --rename wallpaper.jpg
 wallpaper (1920x1080) [16:9].jpg
 ```
